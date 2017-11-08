@@ -5,14 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RsN_Chat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="RsN Chat" Height="350" Width="525">
     <Grid>
         <Menu IsMainMenu="True">
             <MenuItem Header="_File" />
-            <MenuItem Header="_Edit" />
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Cut" Command="Cut">
+                    <MenuItem.Icon>
+                        <Image Source="Images/cut.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem.Icon>
+                        <Image Source="Images/copy.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem.Icon>
+                        <Image Source="Images/paste.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
             <MenuItem Header="_View" />
             <MenuItem Header="_Window" />
-            <MenuItem Header="_Help" />
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About RsN Chat" />
+            </MenuItem>
         </Menu>
     </Grid>
 </Window>
