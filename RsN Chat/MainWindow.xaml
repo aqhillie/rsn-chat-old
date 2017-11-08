@@ -6,31 +6,49 @@
         xmlns:local="clr-namespace:RsN_Chat"
         mc:Ignorable="d"
         Title="RsN Chat" Height="350" Width="525">
-    <Grid>
-        <Menu IsMainMenu="True">
-            <MenuItem Header="_File" />
-            <MenuItem Header="_Edit">
-                <MenuItem Header="_Cut" Command="Cut">
-                    <MenuItem.Icon>
-                        <Image Source="Images/cut.png" />
-                    </MenuItem.Icon>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <MenuItem Header="_File" />
+                <MenuItem Header="_Edit">
+                    <MenuItem Header="_Cut" Command="Cut">
+                        <MenuItem.Icon>
+                            <Image Source="Images/cut.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Copy" Command="Copy">
+                        <MenuItem.Icon>
+                            <Image Source="Images/copy.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Paste" Command="Paste">
+                        <MenuItem.Icon>
+                            <Image Source="Images/paste.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Copy" Command="Copy">
-                    <MenuItem.Icon>
-                        <Image Source="Images/copy.png" />
-                    </MenuItem.Icon>
+                <MenuItem Header="_View" />
+                <MenuItem Header="_Window" />
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_About RsN Chat" />
                 </MenuItem>
-                <MenuItem Header="_Paste" Command="Paste">
-                    <MenuItem.Icon>
-                        <Image Source="Images/paste.png" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem Header="_View" />
-            <MenuItem Header="_Window" />
-            <MenuItem Header="_Help">
-                <MenuItem Header="_About RsN Chat" />
-            </MenuItem>
-        </Menu>
+            </Menu>
+            <TextBlock Grid.Row="1" Grid.Column="0">This is where you'll see the actual chat.</TextBlock>
+            <ListView Grid.Row="1" Grid.Column="1">
+                <ListViewItem Foreground="Purple">JayMartini</ListViewItem>
+                <ListViewItem Foreground="Green">greekhotfunx2</ListViewItem>
+                <ListViewItem Foreground="Red">UrbanRoseNation</ListViewItem>
+            </ListView>
+        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBox TextWrapping="Wrap" />
+        </ScrollViewer>
     </Grid>
 </Window>
