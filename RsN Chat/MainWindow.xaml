@@ -23,7 +23,9 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                <MenuItem Header="_File" />
+            <MenuItem Header="_File">
+                <MenuItem Header="Connect to _Twitch" Command="{Binding MenuCommand}" CommandParameter="ConnectTwitch"/>
+            </MenuItem>
                 <MenuItem Header="_Edit">
                     <MenuItem Header="_Cut" Command="Cut">
                         <MenuItem.Icon>
