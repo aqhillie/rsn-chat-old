@@ -5,9 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RsN_Chat"
         xmlns:vm="clr-namespace:RsN_Chat.ViewModels"
+        xmlns:m="clr-namespace:RsN_Chat.Models"
         mc:Ignorable="d"
         Title="RsN Chat" Height="350" Width="525">
 
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type m:ChatMessage}">
+            <WrapPanel>
+                <TextBlock Text="{Binding Sender.Nickname}" Foreground="{Binding Sender.Color}" FontWeight="Bold" />
+                <TextBlock Text=": " FontWeight="Bold" />
+                <TextBlock Text="{Binding Message}" TextWrapping="Wrap" HorizontalAlignment="Stretch" />
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ChatLineMe" DataType="{x:Type m:ChatMessage}">
+            <WrapPanel>
+                <TextBlock Text="{Binding Sender.Nickname}" Foreground="{Binding Sender.Color}" FontWeight="Bold" />
+                <TextBlock Text="{Binding Message}" Foreground="{Binding Sender.Color}" TextWrapping="Wrap" HorizontalAlignment="Stretch" />
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type m:User}">
+            <TextBlock Foreground="{Binding Color}" Text="{Binding Nickname}"/>
+        </DataTemplate>    
+    </Window.Resources>
+    
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -49,14 +69,15 @@
                     <MenuItem Header="_About RsN Chat" Command="{Binding MenuCommand}" CommandParameter="About"/>
                 </MenuItem>
             </Menu>
-        <ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <TextBlock >This is where you'll see the actual chat.</TextBlock>
-        </ScrollViewer>
-        <ListView Grid.Row="1" Grid.Column="1">
-                <ListViewItem Foreground="Purple">JayMartini</ListViewItem>
-                <ListViewItem Foreground="Green">greekhotfunx2</ListViewItem>
-                <ListViewItem Foreground="Red">UrbanRoseNation</ListViewItem>
-            </ListView>
-            <TextBox TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" />
+        <!--<ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        </ScrollViewer>-->
+        <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=MainChannel.Chat}"/>
+        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=MainChannel.Users}">
+        </ListView>
+        <TextBox TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ChatCommandString, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding ChatCommand}" Key="Enter"/>
+            </TextBox.InputBindings>
+        </TextBox>
     </Grid>
 </Window>
