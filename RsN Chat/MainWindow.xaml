@@ -10,18 +10,40 @@
         Title="RsN Chat" Height="350" Width="525">
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type m:ChatMessage}">
-            <WrapPanel>
-                <TextBlock Text="{Binding Sender.Nickname}" Foreground="{Binding Sender.Color}" FontWeight="Bold" />
-                <TextBlock Text=": " FontWeight="Bold" />
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" Text="{Binding Message, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Stretch" />
-            </WrapPanel>
+        <DataTemplate DataType="{x:Type m:ChatMessagePublic}">
+            <RichTextBox BorderThickness="0">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Sender.Nickname, Mode=OneWay}"/><Run FontWeight="Bold">:</Run>
+                        <Run Text="{Binding Message, Mode=OneWay}"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <!--<WrapPanel>
+                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text="{Binding Sender.Nickname, Mode=OneWay}" Foreground="{Binding Sender.Color}" FontWeight="Bold" />
+                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text=": " FontWeight="Bold" />
+                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text="{Binding Message, Mode=OneWay}" HorizontalAlignment="Stretch" />
+            </WrapPanel>-->
         </DataTemplate>
-        <DataTemplate x:Key="ChatLineMe" DataType="{x:Type m:ChatMessage}">
-            <WrapPanel>
-                <TextBlock Text="{Binding Sender.Nickname}" Foreground="{Binding Sender.Color}" FontWeight="Bold" />
-                <TextBlock Text="{Binding Message}" Foreground="{Binding Sender.Color}" TextWrapping="Wrap" HorizontalAlignment="Stretch" />
-            </WrapPanel>
+        <DataTemplate DataType="{x:Type m:ChatMessageMe}">
+            <RichTextBox BorderThickness="0">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Sender.Nickname, Mode=OneWay}"/>
+                        <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Message, Mode=OneWay}"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type m:ChatMessageSystem}">
+            <RichTextBox BorderThickness="0">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run>***</Run>
+                        <Run Text="{Binding Message, Mode=OneWay}"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
         </DataTemplate>
         <DataTemplate DataType="{x:Type m:User}">
             <TextBlock Foreground="{Binding Color}" Text="{Binding Nickname}"/>
@@ -69,9 +91,9 @@
                     <MenuItem Header="_About RsN Chat" Command="{Binding MenuCommand}" CommandParameter="About"/>
                 </MenuItem>
             </Menu>
-        <!--<ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        </ScrollViewer>-->
-        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=MainChannel.Chat, Mode=OneWay}"/>
+        <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=MainChannel.Chat, Mode=OneWay}"/>
+        </ScrollViewer>
         <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=MainChannel.Users}">
         </ListView>
         <TextBox TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ChatCommandString, UpdateSourceTrigger=PropertyChanged}">

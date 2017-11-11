@@ -23,7 +23,7 @@ namespace RsN_Chat.ViewModels
         public MainWindowViewModel()
         {
             MainChannel = new Channel();
-            MainChannel.AddChatLine(MainChannel.MyUser, "ChatLinePublic", "Welcome to RsN Chat!");
+            MainChannel.AddChatLine(null, "ChatLineSystem", "Welcome to RsN Chat, " + MainChannel.MyUser.Nickname + "!");
 
             ChatCommand = new DelegateCommand<string>(
                 command => { PerformChatAction(); }, // OnExecute
@@ -66,10 +66,16 @@ namespace RsN_Chat.ViewModels
 
         private void PerformChatCommand(string command, List<string> args)
         {
-            if (command.ToLower() == "nick")
+            switch(command.ToLower())
             {
-                Settings.Default.Nickname = args[0];
-                MainChannel.MyUser.setNickname(Settings.Default.Nickname);
+                case "nick":
+                    Settings.Default.Nickname = args[0];
+                    MainChannel.MyUser.SetNickname(Settings.Default.Nickname);
+                    MainChannel.AddChatLine(null, "ChatLineSystem", "Nickname changed to " + MainChannel.MyUser.Nickname + ".");
+                    break;
+                case "me":
+                    MainChannel.AddChatLine(MainChannel.MyUser, "ChatLineMe", " " + string.Join(" ", args));
+                    break;
             }
         }
 

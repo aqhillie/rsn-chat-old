@@ -22,7 +22,7 @@ namespace RsN_Chat.Models
         }
 
 
-        public void setNickname(string name)
+        public void SetNickname(string name)
         {
             Nickname = name;
             if (PropertyChanged != null)

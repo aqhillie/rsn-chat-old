@@ -25,7 +25,7 @@ namespace RsN_Chat.Models
             }
         }
 
-        public List<ChatMessage> Chat { get; set; }
+        public List<Object> Chat { get; set; }
 
         public Channel()
         {
@@ -45,22 +45,27 @@ namespace RsN_Chat.Models
             AddUser(new User("Mookid", "Purple"));
             AddUser(new User("JimmySixtySix", "Brown"));
 
-            Chat = new List<ChatMessage>();
+            Chat = new List<Object>();
         }
 
         public void AddChatLine(User sender, string type, string message)
         {
-#if DEBUG
-            Console.WriteLine("Adding the foollowing chat line:");
-            Console.WriteLine("[" + type + "] " + sender.Nickname + ": " + message);
-#endif
-            Chat.Add(new ChatMessage(sender, type, message));
+            switch (type)
+            {
+                case "ChatLineSystem":
+                    Chat.Add(new ChatMessageSystem(null, message));
+                    break;
+                case "ChatLinePublic":
+                    Chat.Add(new ChatMessagePublic(sender, message));
+                    break;
+                case "ChatLineMe":
+                    Chat.Add(new ChatMessageMe(sender, message));
+                    break;
+            }
+
             ICollectionView view = CollectionViewSource.GetDefaultView(Chat);
             view.Refresh();
-#if DEBUG
-            Console.WriteLine("Line added.");
-            Console.WriteLine(Chat);
-#endif
+
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("Chat"));
