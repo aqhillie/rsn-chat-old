@@ -48,17 +48,22 @@ namespace RsN_Chat.Models
             Chat = new List<Object>();
         }
 
+        public void Echo(string message)
+        {
+            AddChatLine(null, "System", message);
+        }
+
         public void AddChatLine(User sender, string type, string message)
         {
             switch (type)
             {
-                case "ChatLineSystem":
+                case "System":
                     Chat.Add(new ChatMessageSystem(null, message));
                     break;
-                case "ChatLinePublic":
+                case "Public":
                     Chat.Add(new ChatMessagePublic(sender, message));
                     break;
-                case "ChatLineMe":
+                case "Me":
                     Chat.Add(new ChatMessageMe(sender, message));
                     break;
             }

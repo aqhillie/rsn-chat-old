@@ -23,7 +23,8 @@ namespace RsN_Chat.ViewModels
         public MainWindowViewModel()
         {
             MainChannel = new Channel();
-            MainChannel.AddChatLine(null, "ChatLineSystem", "Welcome to RsN Chat, " + MainChannel.MyUser.Nickname + "!");
+            MainChannel.Echo("Welcome to");
+            AsciiLogos.Logo2(MainChannel);
 
             ChatCommand = new DelegateCommand<string>(
                 command => { PerformChatAction(); }, // OnExecute
@@ -48,16 +49,9 @@ namespace RsN_Chat.ViewModels
             }
             else
             {
-                MainChannel.AddChatLine(MainChannel.MyUser, "ChatLinePublic", ChatCommandString);
+                MainChannel.AddChatLine(MainChannel.MyUser, "Public", ChatCommandString);
             }
-#if DEBUG
-            Console.WriteLine("Clearing ChatCommandString");
-            Console.WriteLine("Before: " + ChatCommandString);
-#endif
-            ChatCommandString = "";
-#if DEBUG
-            Console.WriteLine("CMS: " + ChatCommandString);
-#endif
+
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("ChatCommandString"));
@@ -71,20 +65,22 @@ namespace RsN_Chat.ViewModels
                 case "nick":
                     Settings.Default.Nickname = args[0];
                     MainChannel.MyUser.SetNickname(Settings.Default.Nickname);
-                    MainChannel.AddChatLine(null, "ChatLineSystem", "Nickname changed to " + MainChannel.MyUser.Nickname + ".");
+                    MainChannel.Echo("Nickname changed to " + MainChannel.MyUser.Nickname + ".");
                     break;
                 case "me":
-                    MainChannel.AddChatLine(MainChannel.MyUser, "ChatLineMe", " " + string.Join(" ", args));
+                    MainChannel.AddChatLine(MainChannel.MyUser, "Me", " " + string.Join(" ", args));
                     break;
             }
         }
 
         private void PerformMenuAction(string action)
         {
-            if (action == "About")
+            switch(action)
             {
-                AboutRsNChat about = new AboutRsNChat();
-                about.ShowDialog();
+                case "About":
+                    AboutRsNChat about = new AboutRsNChat();
+                    about.ShowDialog();
+                    break;
             }
         }
     }

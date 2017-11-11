@@ -28,7 +28,7 @@
         <DataTemplate DataType="{x:Type m:ChatMessageMe}">
             <RichTextBox BorderThickness="0">
                 <FlowDocument>
-                    <Paragraph>
+                    <Paragraph FontFamily="Consolas" FontSize="10">
                         <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Sender.Nickname, Mode=OneWay}"/>
                         <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Message, Mode=OneWay}"/>
                     </Paragraph>
@@ -38,7 +38,7 @@
         <DataTemplate DataType="{x:Type m:ChatMessageSystem}">
             <RichTextBox BorderThickness="0">
                 <FlowDocument>
-                    <Paragraph>
+                    <Paragraph FontFamily="Consolas" FontSize="10">
                         <Run>***</Run>
                         <Run Text="{Binding Message, Mode=OneWay}"/>
                     </Paragraph>
