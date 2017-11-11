@@ -8,5 +8,8 @@
     <Setting Name="UserColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">Red</Value>
     </Setting>
+    <Setting Name="Nickname" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UrbanRoseNation</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

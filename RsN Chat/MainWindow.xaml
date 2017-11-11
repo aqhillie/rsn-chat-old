@@ -14,7 +14,7 @@
             <WrapPanel>
                 <TextBlock Text="{Binding Sender.Nickname}" Foreground="{Binding Sender.Color}" FontWeight="Bold" />
                 <TextBlock Text=": " FontWeight="Bold" />
-                <TextBlock Text="{Binding Message}" TextWrapping="Wrap" HorizontalAlignment="Stretch" />
+                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" Text="{Binding Message, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Stretch" />
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="ChatLineMe" DataType="{x:Type m:ChatMessage}">
@@ -71,7 +71,7 @@
             </Menu>
         <!--<ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         </ScrollViewer>-->
-        <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=MainChannel.Chat}"/>
+        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=MainChannel.Chat, Mode=OneWay}"/>
         <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=MainChannel.Users}">
         </ListView>
         <TextBox TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ChatCommandString, UpdateSourceTrigger=PropertyChanged}">

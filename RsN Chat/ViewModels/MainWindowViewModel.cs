@@ -2,8 +2,11 @@
 using System.ComponentModel;
 using System.Windows;
 using RsN_Chat.Models;
+using RsN_Chat.Views;
+using RsN_Chat.Properties;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace RsN_Chat.ViewModels
 {
@@ -20,7 +23,8 @@ namespace RsN_Chat.ViewModels
         public MainWindowViewModel()
         {
             MainChannel = new Channel();
-   
+            MainChannel.AddChatLine(MainChannel.MyUser, "ChatLinePublic", "Welcome to RsN Chat!");
+
             ChatCommand = new DelegateCommand<string>(
                 command => { PerformChatAction(); }, // OnExecute
                 command => { return true; } // CanExecute
@@ -45,19 +49,36 @@ namespace RsN_Chat.ViewModels
             else
             {
                 MainChannel.AddChatLine(MainChannel.MyUser, "ChatLinePublic", ChatCommandString);
-                ChatCommandString = "";
+            }
+#if DEBUG
+            Console.WriteLine("Clearing ChatCommandString");
+            Console.WriteLine("Before: " + ChatCommandString);
+#endif
+            ChatCommandString = "";
+#if DEBUG
+            Console.WriteLine("CMS: " + ChatCommandString);
+#endif
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("ChatCommandString"));
             }
         }
 
         private void PerformChatCommand(string command, List<string> args)
         {
+            if (command.ToLower() == "nick")
+            {
+                Settings.Default.Nickname = args[0];
+                MainChannel.MyUser.setNickname(Settings.Default.Nickname);
+            }
         }
 
         private void PerformMenuAction(string action)
         {
             if (action == "About")
             {
-                MessageBox.Show("RsN Chat written by Alexander Rose.", "About RsN Chat");
+                AboutRsNChat about = new AboutRsNChat();
+                about.ShowDialog();
             }
         }
     }

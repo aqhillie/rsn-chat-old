@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using RsN_Chat.ViewModels;
 using RsN_Chat.Models;
 using RsN_Chat.Properties;
+using System.Windows.Data;
 
 namespace RsN_Chat.Models
 {
@@ -45,13 +46,21 @@ namespace RsN_Chat.Models
             AddUser(new User("JimmySixtySix", "Brown"));
 
             Chat = new List<ChatMessage>();
-            AddChatLine(MyUser, "ChatLinePublic", "Welcome to RsN Chat!");
         }
 
         public void AddChatLine(User sender, string type, string message)
         {
+#if DEBUG
+            Console.WriteLine("Adding the foollowing chat line:");
+            Console.WriteLine("[" + type + "] " + sender.Nickname + ": " + message);
+#endif
             Chat.Add(new ChatMessage(sender, type, message));
-
+            ICollectionView view = CollectionViewSource.GetDefaultView(Chat);
+            view.Refresh();
+#if DEBUG
+            Console.WriteLine("Line added.");
+            Console.WriteLine(Chat);
+#endif
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("Chat"));
