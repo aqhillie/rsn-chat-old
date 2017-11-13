@@ -11,5 +11,17 @@
     <Setting Name="Nickname" Type="System.String" Scope="User">
       <Value Profile="(Default)">UrbanRoseNation</Value>
     </Setting>
+    <Setting Name="MainWindowPlacement" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CommandHistoryLength" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="CommandPrefix" Type="System.Char" Scope="User">
+      <Value Profile="(Default)">/</Value>
+    </Setting>
+    <Setting Name="Aliases" Type="System.Collections.Generic.Dictionary&lt;System.String,System.String&gt;" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

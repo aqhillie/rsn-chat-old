@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace RsN_Chat.Properties {
     
     
@@ -56,6 +58,54 @@ namespace RsN_Chat.Properties {
             }
             set {
                 this["Nickname"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MainWindowPlacement {
+            get {
+                return ((string)(this["MainWindowPlacement"]));
+            }
+            set {
+                this["MainWindowPlacement"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int CommandHistoryLength {
+            get {
+                return ((int)(this["CommandHistoryLength"]));
+            }
+            set {
+                this["CommandHistoryLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/")]
+        public char CommandPrefix {
+            get {
+                return ((char)(this["CommandPrefix"]));
+            }
+            set {
+                this["CommandPrefix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public Dictionary<string, string> Aliases {
+            get {
+                return ((Dictionary<string, string>)(this["Aliases"]));
+            }
+            set {
+                this["Aliases"] = value;
             }
         }
     }

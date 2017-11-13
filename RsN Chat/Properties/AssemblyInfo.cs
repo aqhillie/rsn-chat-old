@@ -8,7 +8,31 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RsN Chat")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription
+    (
+		"▄▄▄  .▄▄ ·  ▐ ▄      ▄▄·  ▄ .▄ ▄▄▄· ▄▄▄▄▄\r\n" +
+        "▀▄ █·▐█ ▀. •█▌▐█    ▐█ ▌▪██▪▐█▐█ ▀█ •██\r\n" +
+        "▐▀▀▄ ▄▀▀▀█▄▐█▐▐▌    ██ ▄▄██▀▐█▄█▀▀█  ▐█.▪\r\n" +
+        "▐█•█▌▐█▄▪▐███▐█▌    ▐███▌██▌▐▀▐█ ▪▐▌ ▐█▌·\r\n" +
+        ".▀  ▀ ▀▀▀▀ ▀▀ █▪    ·▀▀▀ ▀▀▀ · ▀  ▀  ▀▀▀\r\n" +
+        "\r\n" +
+        "This app is highly inspired by the ircII EPIC IRC client which is the only " +
+        "IRC client I would ever use, along with the LiCe script by SrfRoG. This " +
+        "client aims to be a quality substitute for ircII EPIC and LiCe.\r\n" +
+        "\r\n" +
+        "Initially this is going to be a Twitch client and once that functionality " +
+        "is completed then I will make it work with regular IRC as well. That " +
+        "should be quite simple in comparison.\r\n" +
+        "\r\n" +
+        "I aim to have full functionality and have as many of the web Twitch " +
+        "chat features as possible, including moderation, deleted messages, " +
+        "emotes, cheers, raids and anything else they add in the future.\r\n" +
+        "\r\n" +
+        "Special thanks to the LiCe/IRC crew: SrfRoG, tjh, whitefang, etc.\r\n" +
+        "\r\n" +
+        "More to come later...\r\n"
+    )
+]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("RsN Chat")]

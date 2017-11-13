@@ -53,8 +53,44 @@ namespace RsN_Chat.Models
             AddChatLine(null, "System", message);
         }
 
+        public void EchoList(List<string> message)
+        {
+            for (int i=0; i < message.Count; i++)
+            {
+                AddChatLine(null, "System", message[i]);
+            }
+        }
+
+        public void EchoMulti(string message)
+        {
+            string[] array = message.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            for (int i=0; i < array.Length; i++)
+            {
+                AddChatLine(null, "System", array[i]);
+            }
+        }
+
+        public void ClearChat()
+        {
+            Chat.Clear();
+
+            ICollectionView view = CollectionViewSource.GetDefaultView(Chat);
+            view.Refresh();
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("Chat"));
+            }
+        }
+
         public void AddChatLine(User sender, string type, string message)
         {
+            if (type != "System")
+            {
+                // Spam protection here
+            }
+
             switch (type)
             {
                 case "System":

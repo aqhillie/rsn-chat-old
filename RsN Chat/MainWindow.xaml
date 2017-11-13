@@ -6,29 +6,26 @@
         xmlns:local="clr-namespace:RsN_Chat"
         xmlns:vm="clr-namespace:RsN_Chat.ViewModels"
         xmlns:m="clr-namespace:RsN_Chat.Models"
+        xmlns:c="clr-namespace:RsN_Chat.Controls"
         mc:Ignorable="d"
-        Title="RsN Chat" Height="350" Width="525">
+        Title="RsN Chat" Height="350" Width="589">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type m:ChatMessagePublic}">
-            <RichTextBox BorderThickness="0">
+            <RichTextBox IsReadOnly="True" BorderThickness="0">
                 <FlowDocument>
-                    <Paragraph>
-                        <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Sender.Nickname, Mode=OneWay}"/><Run FontWeight="Bold">:</Run>
+                    <Paragraph FontFamily="Consolas" FontSize="13">
+                        <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Sender.Nickname, Mode=OneWay}"/>
+                        <Run FontWeight="Bold">:</Run>
                         <Run Text="{Binding Message, Mode=OneWay}"/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <!--<WrapPanel>
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text="{Binding Sender.Nickname, Mode=OneWay}" Foreground="{Binding Sender.Color}" FontWeight="Bold" />
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text=": " FontWeight="Bold" />
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text="{Binding Message, Mode=OneWay}" HorizontalAlignment="Stretch" />
-            </WrapPanel>-->
         </DataTemplate>
         <DataTemplate DataType="{x:Type m:ChatMessageMe}">
-            <RichTextBox BorderThickness="0">
+            <RichTextBox IsReadOnly="True"  BorderThickness="0">
                 <FlowDocument>
-                    <Paragraph FontFamily="Consolas" FontSize="10">
+                    <Paragraph FontFamily="Consolas" FontSize="13">
                         <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Sender.Nickname, Mode=OneWay}"/>
                         <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Message, Mode=OneWay}"/>
                     </Paragraph>
@@ -36,9 +33,9 @@
             </RichTextBox>
         </DataTemplate>
         <DataTemplate DataType="{x:Type m:ChatMessageSystem}">
-            <RichTextBox BorderThickness="0">
+            <RichTextBox IsReadOnly="True"  BorderThickness="0">
                 <FlowDocument>
-                    <Paragraph FontFamily="Consolas" FontSize="10">
+                    <Paragraph FontFamily="Consolas" FontSize="13">
                         <Run>***</Run>
                         <Run Text="{Binding Message, Mode=OneWay}"/>
                     </Paragraph>
@@ -47,13 +44,13 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type m:User}">
             <TextBlock Foreground="{Binding Color}" Text="{Binding Nickname}"/>
-        </DataTemplate>    
+        </DataTemplate>
     </Window.Resources>
-    
+
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -61,45 +58,42 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="27*" />
+            <ColumnDefinition Width="125*"/>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <MenuItem Header="_File">
                 <MenuItem Header="Connect to _Twitch" Command="{Binding MenuCommand}" CommandParameter="ConnectTwitch"/>
             </MenuItem>
-                <MenuItem Header="_Edit">
-                    <MenuItem Header="_Cut" Command="Cut">
-                        <MenuItem.Icon>
-                            <Image Source="Images/cut.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="_Copy" Command="Copy">
-                        <MenuItem.Icon>
-                            <Image Source="Images/copy.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="_Paste" Command="Paste">
-                        <MenuItem.Icon>
-                            <Image Source="Images/paste.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Cut" Command="Cut">
+                    <MenuItem.Icon>
+                        <Image Source="Images/cut.png" />
+                    </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_View" />
-                <MenuItem Header="_Window" />
-                <MenuItem Header="_Help">
-                    <MenuItem Header="_About RsN Chat" Command="{Binding MenuCommand}" CommandParameter="About"/>
+                <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem.Icon>
+                        <Image Source="Images/copy.png" />
+                    </MenuItem.Icon>
                 </MenuItem>
-            </Menu>
-        <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem.Icon>
+                        <Image Source="Images/paste.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_View" />
+            <MenuItem Header="_Window" />
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About RsN Chat" Command="{Binding MenuCommand}" CommandParameter="About"/>
+            </MenuItem>
+        </Menu>
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" vm:AutoScrollBehavior.AutoScroll="True">
             <ItemsControl ItemsSource="{Binding Path=MainChannel.Chat, Mode=OneWay}"/>
         </ScrollViewer>
-        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=MainChannel.Users}">
+        <ListView Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=MainChannel.Users}">
         </ListView>
-        <TextBox TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ChatCommandString, UpdateSourceTrigger=PropertyChanged}">
-            <TextBox.InputBindings>
-                <KeyBinding Command="{Binding ChatCommand}" Key="Enter"/>
-            </TextBox.InputBindings>
-        </TextBox>
+        <c:CommandBox Channel="{Binding Path=MainChannel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="3" TextChanged="CommandBox_TextChanged"/>
     </Grid>
 </Window>
