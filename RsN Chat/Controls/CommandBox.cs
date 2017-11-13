@@ -139,16 +139,22 @@ namespace RsN_Chat.Controls
 
         private void PerformCommand(string command, List<string> args)
         {
-            // Process aliases first and replace command and args appropriately
-            foreach (var alias in Settings.Default.Aliases.ToArray())
-            {
-                if (command.ToUpper() == alias.Key)
+            if (command[0] == Settings.Default.CommandPrefix)
+            { // Check for double // command to skip alias processing
+                command = command.Substring(1);
+            }
+            else
+            { // Process aliases first and replace command and args appropriately
+                foreach (var alias in Settings.Default.Aliases.ToArray())
                 {
-                    List<string> alias_args = alias.Value.Split(' ').ToList();
-                    command = alias_args[0];
-                    alias_args.RemoveAt(0);
-                    alias_args.AddRange(args);
-                    args = alias_args;
+                    if (command.ToUpper() == alias.Key)
+                    {
+                        List<string> alias_args = alias.Value.Split(' ').ToList();
+                        command = alias_args[0];
+                        alias_args.RemoveAt(0);
+                        alias_args.AddRange(args);
+                        args = alias_args;
+                    }
                 }
             }
 
