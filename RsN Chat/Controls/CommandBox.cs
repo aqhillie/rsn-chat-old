@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using RsN_Chat.Models;
-using RsN_Chat.Properties;
 using System.Windows;
-using System.Reflection;
 using RsN_Chat.Classes;
 
 namespace RsN_Chat.Controls
@@ -37,7 +35,7 @@ namespace RsN_Chat.Controls
         private void AddHistory(string text)
         {
             History.Add(text);
-            if (History.Count > Settings.Default.CommandHistoryLength)
+            if (History.Count > IrcSettings.CmdHistorySize)
             {
                 History.RemoveAt(0);
             }
@@ -123,7 +121,7 @@ namespace RsN_Chat.Controls
 
         private void ProcessUserCommand(string cmd)
         {
-            if (cmd[0] == Settings.Default.CommandPrefix)
+            if (cmd[0].ToString() == IrcSettings.Set.cmdchars)
             {
                 string cmdString = cmd.Substring(1);
                 List<string> args = cmdString.Split(' ').ToList();
@@ -139,13 +137,13 @@ namespace RsN_Chat.Controls
 
         private void PerformCommand(string command, List<string> args)
         {
-            if (command[0] == Settings.Default.CommandPrefix)
+            if (command[0].ToString() == IrcSettings.Set.cmdchars)
             { // Check for double // command to skip alias processing
                 command = command.Substring(1);
             }
             else
             { // Process aliases first and replace command and args appropriately
-                foreach (var alias in Settings.Default.Aliases.ToArray())
+                foreach (var alias in IrcSettings.Aliases.ToArray())
                 {
                     if (command.ToUpper() == alias.Key)
                     {
@@ -159,34 +157,7 @@ namespace RsN_Chat.Controls
             }
 
             List<string> command_output = new List<string>();
-
-            switch (command.ToLower())
-            {
-                case "about":
-                    string description = ((AssemblyDescriptionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyDescriptionAttribute), false)).Description;
-                    Channel.EchoMulti(description);
-                    break;
-                case "alias":
-                    command_output = Commands.Alias(args);
-                    break;
-                case "clear":
-                    Channel.ClearChat();
-                    break;
-                case "logo3": //tmp
-                    AsciiLogos.Logo3(Channel);
-                    break;
-                case "logo4": //tmp
-                    AsciiLogos.Logo4(Channel);
-                    break;
-                case "nick":
-                    Settings.Default.Nickname = args[0];
-                    Channel.MyUser.SetNickname(Settings.Default.Nickname);
-                    Channel.Echo("Nickname changed to " + Channel.MyUser.Nickname + ".");
-                    break;
-                case "me":
-                    Channel.AddChatLine(Channel.MyUser, "Me", " " + string.Join(" ", args));
-                    break;
-            }
+            command_output = Commands.ProcessCommands(command, args);
 
             if (command_output.Count > 0)
             {

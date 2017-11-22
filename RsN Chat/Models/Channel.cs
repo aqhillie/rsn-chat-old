@@ -15,7 +15,7 @@ namespace RsN_Chat.Models
     public class Channel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public User MyUser = new User(Settings.Default.Username, Settings.Default.UserColor);
+        public User MyUser = new User(IrcSettings.UserName, IrcSettings.UserColor);
 
         private SortedList<string, User> _users;
         public List<User> Users {

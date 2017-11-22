@@ -15,22 +15,5 @@ namespace RsN_Chat
         {
             InitializeComponent();
         }
-
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            Settings.Default.MainWindowPlacement = WindowPlacement.GetPlacement(this);
-            Settings.Default.Save();
-        }
-
-        protected override void OnSourceInitialized(EventArgs e)
-        {
-            base.OnSourceInitialized(e);
-            WindowPlacement.SetPlacement(this, Settings.Default.MainWindowPlacement);
-        }
-
-        private void CommandBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
     }
 }

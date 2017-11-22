@@ -94,6 +94,6 @@
         </ScrollViewer>
         <ListView Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=MainChannel.Users}">
         </ListView>
-        <c:CommandBox Channel="{Binding Path=MainChannel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="3" TextChanged="CommandBox_TextChanged"/>
+        <c:CommandBox Channel="{Binding Path=MainChannel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="3" />
     </Grid>
 </Window>

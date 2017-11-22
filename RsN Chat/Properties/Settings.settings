@@ -1,27 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RsN_Chat.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="Username" Type="System.String" Scope="User">
-      <Value Profile="(Default)">UrbanRoseNation</Value>
-    </Setting>
-    <Setting Name="UserColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Red</Value>
-    </Setting>
-    <Setting Name="Nickname" Type="System.String" Scope="User">
-      <Value Profile="(Default)">UrbanRoseNation</Value>
-    </Setting>
-    <Setting Name="MainWindowPlacement" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="CommandHistoryLength" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
-    </Setting>
-    <Setting Name="CommandPrefix" Type="System.Char" Scope="User">
-      <Value Profile="(Default)">/</Value>
-    </Setting>
-    <Setting Name="Aliases" Type="System.Collections.Generic.Dictionary&lt;System.String,System.String&gt;" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>
