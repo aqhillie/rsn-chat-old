@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Commands.cs" />
+    <Compile Include="Classes\Expand.cs" />
     <Compile Include="Classes\WindowPlacement.cs" />
     <Compile Include="Classes\AsciiLogos.cs" />
     <Compile Include="Controls\CommandBox.cs" />
@@ -126,8 +127,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Scripts\default.irc" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>mkdir "$(ProjectDir)$(OutDir)\Scripts"
+copy "$(ProjectDir)Scripts\*.*" "$(ProjectDir)$(OutDir)\Scripts" /Y</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

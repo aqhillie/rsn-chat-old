@@ -22,21 +22,10 @@
                 </FlowDocument>
             </RichTextBox>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type m:ChatMessageMe}">
-            <RichTextBox IsReadOnly="True"  BorderThickness="0">
-                <FlowDocument>
-                    <Paragraph FontFamily="Consolas" FontSize="13">
-                        <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Sender.Nickname, Mode=OneWay}"/>
-                        <Run FontWeight="Bold" Foreground="{Binding Sender.Color}" Text="{Binding Message, Mode=OneWay}"/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type m:ChatMessageSystem}">
             <RichTextBox IsReadOnly="True"  BorderThickness="0">
                 <FlowDocument>
                     <Paragraph FontFamily="Consolas" FontSize="13">
-                        <Run>***</Run>
                         <Run Text="{Binding Message, Mode=OneWay}"/>
                     </Paragraph>
                 </FlowDocument>

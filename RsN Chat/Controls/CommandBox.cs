@@ -8,6 +8,7 @@ using System.Windows.Input;
 using RsN_Chat.Models;
 using System.Windows;
 using RsN_Chat.Classes;
+using System.Diagnostics;
 
 namespace RsN_Chat.Controls
 {
@@ -121,17 +122,23 @@ namespace RsN_Chat.Controls
 
         private void ProcessUserCommand(string cmd)
         {
-            if (cmd[0].ToString() == IrcSettings.Set.cmdchars)
+            try
             {
-                string cmdString = cmd.Substring(1);
-                List<string> args = cmdString.Split(' ').ToList();
-                string command = args.First();
-                args.RemoveAt(0);
-                PerformCommand(command, args);
-            }
-            else
+                if (cmd[0].ToString() == IrcSettings.Set.cmdchars)
+                {
+                    string cmdString = cmd.Substring(1);
+                    List<string> args = cmdString.Split(' ').ToList();
+                    string command = args.First();
+                    args.RemoveAt(0);
+                    PerformCommand(command, args);
+                }
+                else
+                {
+                    Channel.AddChatLine(Channel.MyUser, "Public", cmd);
+                }
+            } catch(TypeInitializationException ex)
             {
-                Channel.AddChatLine(Channel.MyUser, "Public", cmd);
+                Console.WriteLine(ex.InnerException);
             }
         }
 
@@ -150,14 +157,21 @@ namespace RsN_Chat.Controls
                         List<string> alias_args = alias.Value.Split(' ').ToList();
                         command = alias_args[0];
                         alias_args.RemoveAt(0);
-                        alias_args.AddRange(args);
-                        args = alias_args;
+                        if (alias_args.Count == 0)
+                        {
+                            alias_args.AddRange(args);
+                            args = alias_args;
+                        }
+                        else
+                        {
+                            args = Expand.DollarArgs(alias_args, args);
+                        }
                     }
                 }
             }
 
             List<string> command_output = new List<string>();
-            command_output = Commands.ProcessCommands(command, args);
+            command_output = Commands.ProcessCommand(command, args);
 
             if (command_output.Count > 0)
             {

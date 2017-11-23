@@ -1,71 +1,81 @@
-﻿using RsN_Chat.Models;
-
+﻿using System.Collections.Generic;
+using RsN_Chat.Models;
 namespace RsN_Chat.Classes
 {
     public static class AsciiLogos
     {
-        public static void Logo1(Channel channel)
+        public static List<string> Logo1()
         {
-            channel.Echo("██████╗ ███████╗███╗   ██╗     ██████╗██╗  ██╗ █████╗ ████████╗");
-            channel.Echo("██╔══██╗██╔════╝████╗  ██║    ██╔════╝██║  ██║██╔══██╗╚══██╔══╝");
-            channel.Echo("██████╔╝███████╗██╔██╗ ██║    ██║     ███████║███████║   ██║");
-            channel.Echo("██╔══██╗╚════██║██║╚██╗██║    ██║     ██╔══██║██╔══██║   ██║");
-            channel.Echo("██║  ██║███████║██║ ╚████║    ╚██████╗██║  ██║██║  ██║   ██║");
-            channel.Echo("╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝");
+            List<string> say = new List<string>();
+            say.Add(IrcSettings.Set.banner + "██████╗ ███████╗███╗   ██╗     ██████╗██╗  ██╗ █████╗ ████████╗");
+            say.Add(IrcSettings.Set.banner + "██╔══██╗██╔════╝████╗  ██║    ██╔════╝██║  ██║██╔══██╗╚══██╔══╝");
+            say.Add(IrcSettings.Set.banner + "██████╔╝███████╗██╔██╗ ██║    ██║     ███████║███████║   ██║");
+            say.Add(IrcSettings.Set.banner + "██╔══██╗╚════██║██║╚██╗██║    ██║     ██╔══██║██╔══██║   ██║");
+            say.Add(IrcSettings.Set.banner + "██║  ██║███████║██║ ╚████║    ╚██████╗██║  ██║██║  ██║   ██║");
+            say.Add(IrcSettings.Set.banner + "╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝");
+            return say;
         }
         
-        public static void Logo2(Channel channel)
+        public static List<string> Logo2()
         {
-            channel.Echo("▄▄▄  .▄▄ ·  ▐ ▄      ▄▄·  ▄ .▄ ▄▄▄· ▄▄▄▄▄");
-            channel.Echo("▀▄ █·▐█ ▀. •█▌▐█    ▐█ ▌▪██▪▐█▐█ ▀█ •██");
-            channel.Echo("▐▀▀▄ ▄▀▀▀█▄▐█▐▐▌    ██ ▄▄██▀▐█▄█▀▀█  ▐█.▪");
-            channel.Echo("▐█•█▌▐█▄▪▐███▐█▌    ▐███▌██▌▐▀▐█ ▪▐▌ ▐█▌·");
-            channel.Echo(".▀  ▀ ▀▀▀▀ ▀▀ █▪    ·▀▀▀ ▀▀▀ · ▀  ▀  ▀▀▀");
+            List<string> say = new List<string>();
+            say.Add(IrcSettings.Set.banner + "▄▄▄  .▄▄ ·  ▐ ▄      ▄▄·  ▄ .▄ ▄▄▄· ▄▄▄▄▄");
+            say.Add(IrcSettings.Set.banner + "▀▄ █·▐█ ▀. •█▌▐█    ▐█ ▌▪██▪▐█▐█ ▀█ •██");
+            say.Add(IrcSettings.Set.banner + "▐▀▀▄ ▄▀▀▀█▄▐█▐▐▌    ██ ▄▄██▀▐█▄█▀▀█  ▐█.▪");
+            say.Add(IrcSettings.Set.banner + "▐█•█▌▐█▄▪▐███▐█▌    ▐███▌██▌▐▀▐█ ▪▐▌ ▐█▌·");
+            say.Add(IrcSettings.Set.banner + ".▀  ▀ ▀▀▀▀ ▀▀ █▪    ·▀▀▀ ▀▀▀ · ▀  ▀  ▀▀▀");
+            return say;
         }
 
-        public static void Logo3(Channel channel)
+        public static List<string> Logo3()
         {
-            channel.Echo(".______  .________.______       ._______ .___.__  .______  _____._");
-            channel.Echo(": __   \\ |    ___/:      \\      :_.  ___\\:   |  \\ :      \\ \\__ _:|");
-            channel.Echo("|  \\____||___    \\|       |     |  : |/\\ |   :   ||   .   |  |  :|");
-            channel.Echo("|   :  \\ |       /|   |   |     |    /  \\|   .   ||   :   |  |   |");
-            channel.Echo("|   |___\\|__:___/ |___|   |     |. _____/|___|   ||___|   |  |   |");
-            channel.Echo("|___|       :         |___|      :/          |___|    |___|  |___|");
-            channel.Echo("                                 :");
+            List<string> say = new List<string>();
+            say.Add(IrcSettings.Set.banner + ".______  .________.______       ._______ .___.__  .______  _____._");
+            say.Add(IrcSettings.Set.banner + ": __   \\ |    ___/:      \\      :_.  ___\\:   |  \\ :      \\ \\__ _:|");
+            say.Add(IrcSettings.Set.banner + "|  \\____||___    \\|       |     |  : |/\\ |   :   ||   .   |  |  :|");
+            say.Add(IrcSettings.Set.banner + "|   :  \\ |       /|   |   |     |    /  \\|   .   ||   :   |  |   |");
+            say.Add(IrcSettings.Set.banner + "|   |___\\|__:___/ |___|   |     |. _____/|___|   ||___|   |  |   |");
+            say.Add(IrcSettings.Set.banner + "|___|       :         |___|      :/          |___|    |___|  |___|");
+            say.Add(IrcSettings.Set.banner + "                                 :");
+            return say;
         }
 
-        public static void Logo4(Channel channel)
+        public static List<string> Logo4()
         {
-            channel.Echo(" .S_sSSs      sSSs   .S_sSSs            sSSs   .S    S.    .S_SSSs    sdSS_SSSSSSbs");
-            channel.Echo(".SS~YS%%b    d%%SP  .SS~YS%%b          d%%SP  .SS    SS.  .SS~SSSSS   YSSS~S%SSSSSP");
-            channel.Echo("S %S   `S%b  d%S'    S%S   `S%b        d%S'    S%S    S%S  S%S   SSSS       S%S");
-            channel.Echo("S %S    S%S  S%|     S%S    S%S        S%S     S%S    S%S  S%S    S%S       S%S");
-            channel.Echo("S %S    d*S  S&S     S%S    S&S        S&S     S%S SSSS%S  S%S SSSS%S       S&S");
-            channel.Echo("S &S   .S*S  Y&Ss    S&S    S&S        S&S     S&S  SSS&S  S&S  SSS%S       S&S");
-            channel.Echo("S &S_sdSSS   `S&&S   S&S    S&S        S&S     S&S    S&S  S&S    S&S       S&S");
-            channel.Echo("S &S~YSY%b     `S*S  S&S    S&S        S&S     S&S    S&S  S&S    S&S       S&S");
-            channel.Echo("S *S   `S%b     l*S  S*S    S*S        S*b     S*S    S*S  S*S    S&S       S*S");
-            channel.Echo("S *S    S%S    .S*P  S*S    S*S        S*S.    S*S    S*S  S*S    S*S       S*S");
-            channel.Echo("S *S    S&S  sSS*S   S*S    S*S         SSSbs  S*S    S*S  S*S    S*S       S*S");
-            channel.Echo("S *S    SSS  YSS'    S*S    SSS          YSSP  SSS    S*S  SSS    S*S       S*S");
-            channel.Echo("SP                  SP                               SP          SP        SP");
-            channel.Echo("Y                   Y                                Y           Y         Y");
+            List<string> say = new List<string>();
+            say.Add(IrcSettings.Set.banner + " .S_sSSs      sSSs   .S_sSSs            sSSs   .S    S.    .S_SSSs    sdSS_SSSSSSbs");
+            say.Add(IrcSettings.Set.banner + ".SS~YS%%b    d%%SP  .SS~YS%%b          d%%SP  .SS    SS.  .SS~SSSSS   YSSS~S%SSSSSP");
+            say.Add(IrcSettings.Set.banner + "S %S   `S%b  d%S'    S%S   `S%b        d%S'    S%S    S%S  S%S   SSSS       S%S");
+            say.Add(IrcSettings.Set.banner + "S %S    S%S  S%|     S%S    S%S        S%S     S%S    S%S  S%S    S%S       S%S");
+            say.Add(IrcSettings.Set.banner + "S %S    d*S  S&S     S%S    S&S        S&S     S%S SSSS%S  S%S SSSS%S       S&S");
+            say.Add(IrcSettings.Set.banner + "S &S   .S*S  Y&Ss    S&S    S&S        S&S     S&S  SSS&S  S&S  SSS%S       S&S");
+            say.Add(IrcSettings.Set.banner + "S &S_sdSSS   `S&&S   S&S    S&S        S&S     S&S    S&S  S&S    S&S       S&S");
+            say.Add(IrcSettings.Set.banner + "S &S~YSY%b     `S*S  S&S    S&S        S&S     S&S    S&S  S&S    S&S       S&S");
+            say.Add(IrcSettings.Set.banner + "S *S   `S%b     l*S  S*S    S*S        S*b     S*S    S*S  S*S    S&S       S*S");
+            say.Add(IrcSettings.Set.banner + "S *S    S%S    .S*P  S*S    S*S        S*S.    S*S    S*S  S*S    S*S       S*S");
+            say.Add(IrcSettings.Set.banner + "S *S    S&S  sSS*S   S*S    S*S         SSSbs  S*S    S*S  S*S    S*S       S*S");
+            say.Add(IrcSettings.Set.banner + "S *S    SSS  YSS'    S*S    SSS          YSSP  SSS    S*S  SSS    S*S       S*S");
+            say.Add(IrcSettings.Set.banner + "SP                  SP                               SP          SP        SP");
+            say.Add(IrcSettings.Set.banner + "Y                   Y                                Y           Y         Y");
+            return say;
         }
 
 
 
-        public static void LogoHalloween(Channel channel)
+        public static List<string> LogoHalloween()
         {
-            channel.Echo(" ██▀███    ██████  ███▄    █     ▄████▄   ██░ ██  ▄▄▄      ▄▄▄█████▓");
-            channel.Echo("▓██ ▒ ██▒▒██    ▒  ██ ▀█   █    ▒██▀ ▀█  ▓██░ ██▒▒████▄    ▓  ██▒ ▓▒");
-            channel.Echo("▓██ ░▄█ ▒░ ▓██▄   ▓██  ▀█ ██▒   ▒▓█    ▄ ▒██▀▀██░▒██  ▀█▄  ▒ ▓██░ ▒░");
-            channel.Echo("▒██▀▀█▄    ▒   ██▒▓██▒  ▐▌██▒   ▒▓▓▄ ▄██▒░▓█ ░██ ░██▄▄▄▄██ ░ ▓██▓ ░");
-            channel.Echo("░██▓ ▒██▒▒██████▒▒▒██░   ▓██░   ▒ ▓███▀ ░░▓█▒░██▓ ▓█   ▓██▒  ▒██▒ ░");
-            channel.Echo("░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░░ ▒░   ▒ ▒    ░ ░▒ ▒  ░ ▒ ░░▒░▒ ▒▒   ▓▒█░  ▒ ░░");
-            channel.Echo("  ░▒ ░ ▒░░ ░▒  ░ ░░ ░░   ░ ▒░     ░  ▒    ▒ ░▒░ ░  ▒   ▒▒ ░    ░");
-            channel.Echo("  ░░   ░ ░  ░  ░     ░   ░ ░    ░         ░  ░░ ░  ░   ▒     ░");
-            channel.Echo("   ░           ░           ░    ░ ░       ░  ░  ░      ░  ░");
-            channel.Echo("                                ░");
+            List<string> say = new List<string>();
+            say.Add(IrcSettings.Set.banner + " ██▀███    ██████  ███▄    █     ▄████▄   ██░ ██  ▄▄▄      ▄▄▄█████▓");
+            say.Add(IrcSettings.Set.banner + "▓██ ▒ ██▒▒██    ▒  ██ ▀█   █    ▒██▀ ▀█  ▓██░ ██▒▒████▄    ▓  ██▒ ▓▒");
+            say.Add(IrcSettings.Set.banner + "▓██ ░▄█ ▒░ ▓██▄   ▓██  ▀█ ██▒   ▒▓█    ▄ ▒██▀▀██░▒██  ▀█▄  ▒ ▓██░ ▒░");
+            say.Add(IrcSettings.Set.banner + "▒██▀▀█▄    ▒   ██▒▓██▒  ▐▌██▒   ▒▓▓▄ ▄██▒░▓█ ░██ ░██▄▄▄▄██ ░ ▓██▓ ░");
+            say.Add(IrcSettings.Set.banner + "░██▓ ▒██▒▒██████▒▒▒██░   ▓██░   ▒ ▓███▀ ░░▓█▒░██▓ ▓█   ▓██▒  ▒██▒ ░");
+            say.Add(IrcSettings.Set.banner + "░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░░ ▒░   ▒ ▒    ░ ░▒ ▒  ░ ▒ ░░▒░▒ ▒▒   ▓▒█░  ▒ ░░");
+            say.Add(IrcSettings.Set.banner + "  ░▒ ░ ▒░░ ░▒  ░ ░░ ░░   ░ ▒░     ░  ▒    ▒ ░▒░ ░  ▒   ▒▒ ░    ░");
+            say.Add(IrcSettings.Set.banner + "  ░░   ░ ░  ░  ░     ░   ░ ░    ░         ░  ░░ ░  ░   ▒     ░");
+            say.Add(IrcSettings.Set.banner + "   ░           ░           ░    ░ ░       ░  ░  ░      ░  ░");
+            say.Add(IrcSettings.Set.banner + "                                ░");
+            return say;
         }
     }
 }

@@ -3,6 +3,7 @@ using RsN_Chat.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -11,12 +12,16 @@ namespace RsN_Chat.Classes
     public static class Commands
     {
 
-        public static List<string> ProcessCommands(string command, List<string> args)
+        public static List<string> ProcessCommand(string command, List<string> args)
         {
             List<string> command_output = new List<string>();
 
             switch (command.ToLower())
             {
+                case "#":
+                case "comment":
+                    // Nothing to do here
+                    break;
                 case "about":
                     command_output = About();
                     break;
@@ -26,12 +31,12 @@ namespace RsN_Chat.Classes
                 case "away":
                     command_output = Away(args);
                     break;
-                case "comment":
-                    // Nothing to do here
-                    break;
                 case "clear":
                     //May have this in a seperate area called UI commands, maybe not
                     //Channel.ClearChat();
+                    break;
+                case "load":
+                    command_output = Load(args);
                     break;
                 case "nick":
                     command_output = Nick(args);
@@ -52,8 +57,8 @@ namespace RsN_Chat.Classes
             string[] array = description.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
             for (int i = 0; i < array.Length; i++)
-            {
-                say.Add("*** " + array[i]);
+            { 
+                say.Add(IrcSettings.Set.banner + array[i]);
             }
 
             return say;
@@ -113,6 +118,26 @@ namespace RsN_Chat.Classes
             {
                 // turn away on
                 say.Add("*** You have been marked as being away.");
+            }
+
+            return say;
+        }
+
+        public static List<string> Load(List<string> args)
+        {
+            List<string> say = new List<string>();
+
+            for (int i = 0; i < args.Count; i++)
+            {
+                say.Add(IrcSettings.Set.banner + "Loading \"" + args[i] + "\"...");
+                foreach (string line in File.ReadAllLines(args[i]))
+                {
+                    List<string> cmd_args = line.Split(' ').ToList();
+                    string cmd = cmd_args[0];
+                    cmd_args.RemoveAt(0);
+
+                    Commands.ProcessCommand(cmd, cmd_args);
+                }
             }
 
             return say;
