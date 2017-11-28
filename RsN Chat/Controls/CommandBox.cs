@@ -124,6 +124,7 @@ namespace RsN_Chat.Controls
         {
             try
             {
+                // FIXME: Get first X characters where X is length of cmdchars, to support more-than-one-character command prefix
                 if (cmd[0].ToString() == IrcSettings.Set.cmdchars)
                 {
                     string cmdString = cmd.Substring(1);
@@ -144,6 +145,7 @@ namespace RsN_Chat.Controls
 
         private void PerformCommand(string command, List<string> args)
         {
+            // FIXME: Get first X characters where X is length of cmdchars, to support more-than-one-character command prefix
             if (command[0].ToString() == IrcSettings.Set.cmdchars)
             { // Check for double // command to skip alias processing
                 command = command.Substring(1);

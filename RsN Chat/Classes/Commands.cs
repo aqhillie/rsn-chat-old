@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
 
 namespace RsN_Chat.Classes
 {
@@ -35,6 +36,13 @@ namespace RsN_Chat.Classes
                     //May have this in a seperate area called UI commands, maybe not
                     //Channel.ClearChat();
                     break;
+                case "exit":
+                case "quit":
+                    Exit();
+                    break;
+                case "host":
+                    command_output = Host(args);
+                    break;
                 case "load":
                     command_output = Load(args);
                     break;
@@ -43,6 +51,9 @@ namespace RsN_Chat.Classes
                     break;
                 case "me":
                     command_output = Me(args);
+                    break;
+                case "unhost":
+                    command_output = Unhost(args);
                     break;
             }
 
@@ -112,12 +123,37 @@ namespace RsN_Chat.Classes
             if (args.Count == 0)
             {
                 // turn away off
-                say.Add("*** You are no longer set as being away.");
+                say.Add(IrcSettings.Set.banner + "You are no longer set as being away.");
             }
             else
             {
                 // turn away on
-                say.Add("*** You have been marked as being away.");
+                say.Add(IrcSettings.Set.banner + "You have been marked as being away.");
+            }
+
+            return say;
+        }
+
+        //public static List<string> Exit()
+        public static void Exit()
+        {
+            Application.Current.Shutdown();
+        }
+
+        // Twitch only - /host a broadcaster on your channel (or on the currently active channel)
+        public static List<string> Host(List<string> args)
+        {
+            List<string> say = new List<string>();
+
+            if (args.Count > 0)
+            {
+                say.Add(IrcSettings.Set.banner + "Sending a host to your channel for " + args[0]);
+
+                // Twitch IRC server code here
+            }
+            else
+            {
+                say.Add(IrcSettings.Set.banner + "Usage: " + IrcSettings.Set.cmdchars + "HOST <username>");
             }
 
             return say;
@@ -163,5 +199,18 @@ namespace RsN_Chat.Classes
 
             return say;
         }
+
+        // Twitch only - Turns off host mode for your channel or the current channel.
+        public static List<string> Unhost(List<string> args)
+        {
+            List<string> say = new List<string>();
+
+            say.Add(IrcSettings.Set.banner + "Turning off HOST mode.");
+
+            // Twitch IRC server code here
+
+            return say;
+        }
+
     }
 }
